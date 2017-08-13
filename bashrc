@@ -54,6 +54,7 @@ setup_aliases() {
   alias fgrep="fgrep $__CA"
   alias egrep="egrep $__CA"
   alias tree="tree -C"
+  alias cd..="cd .."
 }
 
 # load aliases and add user's bin to path
