@@ -1,0 +1,12 @@
+#
+# ~/.ssh/config for Linux Servers
+#
+Host *
+  HashKnownHosts yes
+  PubkeyAuthentication yes
+  ChallengeResponseAuthentication no
+  ForwardAgent=yes
+  TCPKeepAlive=no
+  ServerAliveInterval=5
+  Compression=yes
+  SendEnv GIT_*

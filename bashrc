@@ -33,19 +33,17 @@ mac_setup() {
 linux_setup() {
   [ -f /etc/bashrc ] && . /etc/bashrc
   ulimit -n 64000 >/dev/null 2>&1
-  CNAME=$(hostname -d | cut -d. -f1)
-  [ "$CNAME" ] && [ -d "/opt/${CNAME}-linux" ] && PATH="/opt/${CNAME}-linux/bin:$PATH"
+  for DPATH in /opt/*-linux/bin; do
+    PATH="$DPATH:$PATH"
+  done
 }
 [[ "$OSTYPE" == *'linux'* ]] && linux_setup
 
 # Aliases
 setup_aliases() {
   __CA="" && ls --color=auto >/dev/null 2>&1 && __CA="--color=auto"
-  alias rm="rm -i"
-  alias cp="cp -i"
-  alias mv="mv -i"
   alias ls="ls $__CA"
-  alias ll="ls -l"
+  alias ll="ls -ltr"
   alias lld="ls -lUd .*/ */"
   alias l="ls -CF"
   alias l.="ls -lA"
@@ -54,14 +52,13 @@ setup_aliases() {
   alias fgrep="fgrep $__CA"
   alias egrep="egrep $__CA"
   alias tree="tree -C"
-  alias cd..="cd .."
 }
 
 # load aliases and add user's bin to path
 if [ "$(echo ~)" != "/" ]; then
   [ -d ~/bin ] && PATH=~/bin:$PATH
   # Setup aliases on interactive terminal
-  [ -t 0 ] && [ ! "$(alias)" ] && setup_aliases
+  [ -t 0 ] && setup_aliases
   # Load .bash_common for interactive sessions
   [ -t 0 ] && [ ! "$__DF_BASH_COMMON" ] && [ -e ~/.bash_common ] && . ~/.bash_common
 fi
