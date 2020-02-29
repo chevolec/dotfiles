@@ -5,7 +5,7 @@ My dotfiles
 - How to install/update:
 
   ```bash
-  git clone https://github.com/jpmx/dotfiles.git ~/.dotfiles
+  git clone https://github.com/chevolec/dotfiles.git ~/.dotfiles
   ~/.dotfiles/install
   ```
 
