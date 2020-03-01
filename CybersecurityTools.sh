@@ -8,7 +8,7 @@ mkdir -p ~/tools/librerias
 mkdir -p ~/tools/recon
 
 # Install pip
-sudo apt-get install python-pip
+sudo apt-get -y install python3-pip
 
 
 # Install tools
