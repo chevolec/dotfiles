@@ -86,3 +86,9 @@ if [ "$(echo ~)" != "/" ]; then
   # Load .bash_common for interactive sessions
   [ -t 0 ] && [ ! "$__DF_BASH_COMMON" ] && [ -e ~/.bash_common ] && . ~/.bash_common
 fi
+
+#Informative git prompt for bash
+if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+    GIT_PROMPT_ONLY_IN_REPO=1
+    source $HOME/.bash-git-prompt/gitprompt.sh
+fi
