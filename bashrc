@@ -48,6 +48,7 @@ setup_aliases() {
   alias ....='cd ../../../../'
   alias apt-get="sudo apt-get"
   alias cls="clear"
+  alias df="df -h"
   alias ls="ls $__CA"
   alias ll="ls -ltr"
   alias lld="ls -lUd .*/ */"
