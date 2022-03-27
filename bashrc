@@ -21,11 +21,6 @@ mac_setup() {
   # Add GNU's tar to path
   [ -x /usr/local/opt/gnu-tar/libexec/gnubin/tar ] && \
     PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
-
-  # perl
-  if [ -d /usr/local/lib/perl5 ]; then
-    export PERL5LIB="/usr/local/lib/perl5${PERL5LIB+:}${PERL5LIB}"
-  fi
 }
 [[ "$OSTYPE" == *'darwin'* ]] && mac_setup
 
@@ -58,6 +53,7 @@ setup_aliases() {
   alias egrep="egrep $__CA"
   alias fgrep="fgrep $__CA"
   alias grep="grep $__CA"
+  alias cls="clear"
   ## pass options to free ##
   alias meminfo='free -m -l -t'
   alias mkdir="mkdir -pv"
@@ -76,6 +72,7 @@ setup_aliases() {
 
   ## Get server cpu info ##
   alias cpuinfo='lscpu'
+
 }
 
 # load aliases and add user's bin to path
@@ -85,12 +82,4 @@ if [ "$(echo ~)" != "/" ]; then
   [ -t 0 ] && setup_aliases
   # Load .bash_common for interactive sessions
   [ -t 0 ] && [ ! "$__DF_BASH_COMMON" ] && [ -e ~/.bash_common ] && . ~/.bash_common
-fi
-
-#Informative git prompt for bash
-#also need 
-#git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
-if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-    GIT_PROMPT_ONLY_IN_REPO=1
-    source $HOME/.bash-git-prompt/gitprompt.sh
 fi

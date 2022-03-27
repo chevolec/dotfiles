@@ -5,8 +5,8 @@ set nowrap        " don't wrap lines
 set autoindent    "
 set expandtab     "
 set tabstop=4     " a tab is four spaces
-set number        " always show line numbers
-set shiftwidth=2  " number of spaces to use for autoindenting
+"set number        " always show line numbers
+set shiftwidth=4  " number of spaces to use for autoindenting
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
 set smartcase     " ignore case if search pattern is all lowercase,
@@ -21,8 +21,7 @@ set noswapfile
 colors desert
 
 " make backspace work like most other apps
-set backspace=2
-set backspace=indent,eol,start
+set backspace=indent,eol,start  " more powerful backspacing
 
 " Start vim in insert mode
 " au BufRead,BufNewFile * start
