@@ -1,11 +1,11 @@
 " This must be first, because it changes other options as side effect
 set encoding=utf-8
 set nocompatible
-set nowrap        " don't wrap lines
+set wrap        " don't wrap lines
 set autoindent    "
 set expandtab     "
 set tabstop=4     " a tab is four spaces
-"set number        " always show line numbers
+set number        " always show line numbers
 set shiftwidth=4  " number of spaces to use for autoindenting
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
