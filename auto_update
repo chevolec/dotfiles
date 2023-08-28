@@ -10,15 +10,15 @@ IS_GIT=
 grep -q 'url = git' .git/config && IS_GIT=true
 
 # switch to https
-[ "$IS_GIT" ] && sed -i -e 's|url =.*|url = https://github.com/jpmx/dotfiles.git|g' .git/config
+[ "$IS_GIT" ] && sed -i -e 's|url =.*|url = https://github.com/chevolec/dotfiles.git|g' .git/config
 
 # Check if we have a new version
 UPDATE=
-URL="https://github.com/jpmx/dotfiles.git/info/refs?service=git-upload-pack"
+URL="https://github.com/chevolec/dotfiles.git/info/refs?service=git-upload-pack"
 ! curl -m 3 -s -A "git/2.6.2" "$URL" 2>/dev/null | grep -q "$CURRENT" && UPDATE=true
 
 # Switch back to git if not update detected
-[ "$IS_GIT" ] && [ ! "$UPDATE" ] && sed -i -e 's|url =.*|url = git@github.com:jpmx/dotfiles.git|g' .git/config
+[ "$IS_GIT" ] && [ ! "$UPDATE" ] && sed -i -e 's|url =.*|url = git@github.com:chevolec/dotfiles.git|g' .git/config
 
 [ ! "$UPDATE" ] && exit 0
 
@@ -26,4 +26,4 @@ URL="https://github.com/jpmx/dotfiles.git/info/refs?service=git-upload-pack"
 git pull  >/dev/null 2>&1 && ./install >/dev/null 2>&1 && echo "New .dotfiles version installed"
 
 # Switch back to git
-[ "$IS_GIT" ] && sed -i -e 's|url =.*|url = git@github.com:jpmx/dotfiles.git|g' .git/config
+[ "$IS_GIT" ] && sed -i -e 's|url =.*|url = git@github.com:chevolec/dotfiles.git|g' .git/config

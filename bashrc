@@ -21,6 +21,15 @@ mac_setup() {
   # Add GNU's tar to path
   [ -x /usr/local/opt/gnu-tar/libexec/gnubin/tar ] && \
     PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+
+  # add vscode to gitconfig
+  ! grep -q 'code --wait --new-window' ~/.gitconfig && git config --global core.editor 'code --wait --new-window'
+  if ! grep -q 'tool = vscode' ~/.gitconfig; then
+      git config --global diff.tool vscode
+      git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'
+      git config --global merge.tool vscode
+      git config --global mergetool.vscode.cmd 'code --wait $MERGED'
+  fi
 }
 [[ "$OSTYPE" == *'darwin'* ]] && mac_setup
 
@@ -37,7 +46,6 @@ linux_setup() {
 # Aliases
 setup_aliases() {
   __CA="" && ls --color=auto >/dev/null 2>&1 && __CA="--color=auto"
-  # easy navigation
   alias ..="cd .."
   alias ...='cd ../../../'
   alias ....='cd ../../../../'
@@ -50,29 +58,11 @@ setup_aliases() {
   alias l="ls -CF"
   alias l.="ls -lA"
   alias la="ls -A"
-  alias egrep="egrep $__CA"
-  alias fgrep="fgrep $__CA"
   alias grep="grep $__CA"
-  alias cls="clear"
-  ## pass options to free ##
-  alias meminfo='free -m -l -t'
-  alias mkdir="mkdir -pv"
-  alias ports="netstat -tulanp"
-  alias svi="sudo vi"
+  alias fgrep="fgrep $__CA"
+  alias egrep="egrep $__CA"
   alias tree="tree -C"
-  alias update="sudo apt-get upgrade"
-  alias vi="vim"
-  ## get top process eating memory
-  alias psmem='ps auxf | sort -nr -k 4'
-  alias psmem10='ps auxf | sort -nr -k 4 | head -10'
-
-  ## get top process eating cpu ##
-  alias pscpu='ps auxf | sort -nr -k 3'
-  alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
-
-  ## Get server cpu info ##
-  alias cpuinfo='lscpu'
-
+  alias cls="clear"
 }
 
 # load aliases and add user's bin to path
